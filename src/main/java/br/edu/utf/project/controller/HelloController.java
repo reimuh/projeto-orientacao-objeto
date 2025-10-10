@@ -1,4 +1,4 @@
-package br.edu.utf.project;
+package br.edu.utf.project.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/")
     public String hello() {
-        return "Aplicação está rodando 🚀";
+        return "Aplicação está rodando";
     }
 }
