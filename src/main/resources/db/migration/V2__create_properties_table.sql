@@ -1,10 +1,12 @@
 CREATE TABLE addresses (
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-	street VARCHAR(255) NOT NULL,
-	city VARCHAR(100) NOT NULL,
-	state VARCHAR(100) NOT NULL,
 	zip_code VARCHAR(20) NOT NULL,
 	country VARCHAR(100) NOT NULL,
+	state VARCHAR(100) NOT NULL,
+	city VARCHAR(100) NOT NULL,
+	street VARCHAR(255) NOT NULL,
+	number VARCHAR(20) NULL,
+	complement VARCHAR(255) NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -12,7 +14,7 @@ CREATE TABLE addresses (
 CREATE TABLE properties (
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	owner_id UUID REFERENCES users(id) ON DELETE CASCADE,
-	address_id UUID REFERENCES addresses(id) ON DELETE CASCADE,
+	address_id UUID REFERENCES addresses(id) ON DELETE NO ACTION,
 	title VARCHAR(255) NOT NULL,
 	daily_rate DECIMAL(10, 2) NOT NULL,
 	description TEXT,
