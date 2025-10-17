@@ -1,3 +1,5 @@
+// RF09 - atualizar os dados
+
 package br.edu.utf.project.service;
 
 import java.util.List;
@@ -28,10 +30,28 @@ public class PropertyService {
 		return propertyRepository.save(property);
 	}
 
+//////
+	public Optional<PropertyModel> update(UUID id, PropertyModel propertyDetails) {
+        return propertyRepository.findById(id).map(existingProperty -> {
+            existingProperty.setTitle(propertyDetails.getTitle());
+            existingProperty.setDescription(propertyDetails.getDescription());
+            existingProperty.setDailyRate(propertyDetails.getDailyRate());
+            existingProperty.setType(propertyDetails.getType());
+            existingProperty.setStatus(propertyDetails.getStatus());
+
+            return propertyRepository.save(existingProperty);
+        });
+    }
+
+
+	public boolean delete(UUID id) {
+
 	public boolean delete(UUID id) {
 		if (!propertyRepository.existsById(id))
 			return false;
 		propertyRepository.deleteById(id);
 		return true;
 	}
+}
+
 }
